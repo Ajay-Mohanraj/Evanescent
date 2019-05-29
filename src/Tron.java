@@ -17,9 +17,12 @@ public class Tron extends Application {
     Image thanosRight  = new Image("ThanosRight.gif", 150, 150, true, true);
     Image thanosUp = new Image("ThanosUp.gif", 150, 150, true, true);
     Image thanosDown = new Image("ThanosDown.gif", 150, 150, true, true);
+
     ImageView p1 = new ImageView(yellowRight);
     ImageView p2 = new ImageView(thanosLeft);
+
     public void start(Stage ps) {
+
         p1.setX(750);
         p1.setY(750);
 
@@ -31,6 +34,11 @@ public class Tron extends Application {
         Scene scene = new Scene(pane);
         ps.setScene(scene);
         ps.show();
+
+    }
+
+    public void move() {
+
     }
 }
 
