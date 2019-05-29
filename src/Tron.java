@@ -9,16 +9,16 @@ public class Tron extends Application {
     public void start(Stage ps) {
         Pane pane = new Pane();
 
-        Image player1 = new Image("ThanosTron.png", 150, 150, true, true);
+        Image player1 = new Image("YellowRight.gif", 150, 150, true, true);
         ImageView p1 = new ImageView(player1);
-        p1.setX(150);
-        p1.setY(150);
+        p1.setX(750);
+        p1.setY(750);
 
 
-        Image player2 = new Image("YellowCar.png", 150, 150, true, true);
+        Image player2 = new Image("ThanosLeft.gif", 150, 150, true, true);
         ImageView p2 = new ImageView(player2);
-        p2.setX(750);
-        p2.setY(750);
+        p2.setX(150);
+        p2.setY(150);
 
         pane.getChildren().addAll(p1, p2);
 
