@@ -32,5 +32,9 @@ public class BackUpTron extends Application {
         ps.setScene(scene);
         ps.show();
     }
+
+    public void move() {
+
+    }
 }
 
