@@ -5,7 +5,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-public class Tron extends Application {
+public class BackUpTron extends Application {
     Pane pane = new Pane();
 
     Image yellowRight = new Image("YellowRight.gif", 150, 150, true, true);
