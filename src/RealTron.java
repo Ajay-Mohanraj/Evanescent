@@ -107,7 +107,6 @@ public class RealTron extends Application {
             p2.setY(p2.getY() + 5);
         }
     }
-
     public void released(KeyEvent e) {
         if (e.getText().equals("w")) {
             wdown = false;
