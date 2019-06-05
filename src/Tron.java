@@ -30,19 +30,19 @@ public class Tron extends Application {
         p2.setY(650);
 
         pane.setOnKeyPressed(e -> {
-            if(e.getCode() == KeyCode.UP) {
-                p1Dx = 0;
-                p1Dy = -5;
-            }
-            if(e.getCode() == KeyCode.DOWN) {
-                p1Dx = 0;
-                p1Dy = 5;
-            }
-            if(e.getCode() == KeyCode.RIGHT) {
-                p1Dx = 5;
-                p1Dy = 0;
-            }
-            if(e.getCode() == KeyCode.LEFT) {
+                if(e.getCode() == KeyCode.UP) {
+                    p1Dx = 0;
+                    p1Dy = -5;
+                }
+                if(e.getCode() == KeyCode.DOWN) {
+                    p1Dx = 0;
+                    p1Dy = 5;
+                }
+                if(e.getCode() == KeyCode.RIGHT) {
+                    p1Dx = 5;
+                    p1Dy = 0;
+                }
+                if(e.getCode() == KeyCode.LEFT) {
                 p1Dx = -5;
                 p1Dy = 0;
             }
@@ -52,6 +52,7 @@ public class Tron extends Application {
         p1.setY(p1.getY() + p1Dy);
 
         pane.getChildren().add(p1);
+        pane.getChildren().add(p2);
 
         Scene scene = new Scene(pane, 750, 750);
         ps.setScene(scene);
