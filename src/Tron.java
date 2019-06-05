@@ -1,4 +1,5 @@
 import javafx.application.Application;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -6,64 +7,63 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.scene.input.KeyCode;
 
-public class Tron extends Application{
+
+public class Tron extends Application {
+    public double p1Dx = 5;
+    public double p1Dy = 0;
+    public double p2Dx = -5;
+    public double p2Dy = 0;
+
     public void start(Stage ps) {
         Pane pane = new Pane();
 
-        Image yellowRight = new Image("YellowRight.gif", 150, 150, true, true);
-        Image yellowLeft = new Image("YellowLeft.gif", 150, 150, true, true);
-        Image yellowUp = new Image("YellowUp.gif", 150, 150, true, true);
-        Image yellowDown = new Image("YellowDown.gif", 150, 150, true, true);
+        Image thanos = new Image("ThanosRight.png", 150, 150, true, true);
+        ImageView p1 = new ImageView(thanos);
+        p1.setX(150);
+        p1.setX(150);
 
-        Image thanosLeft = new Image("ThanosLeft.gif", 150, 150, true, true);
-        Image thanosRight  = new Image("ThanosRight.gif", 150, 150, true, true);
-        Image thanosUp = new Image("ThanosUp.gif", 150, 150, true, true);
-        Image thanosDown = new Image("ThanosDown.gif", 150, 150, true, true);
-        ImageView p1 = new ImageView(yellowLeft);
-        double p1Speed = 5;
 
-        ImageView p2 = new ImageView(thanosRight);
-        double p2Speed = 5;
+        Image yellow = new Image("Yellow.png", 150, 150, true, true);
+        ImageView p2 = new ImageView(yellow);
+        p2.setX(600);
+        p2.setY(650);
 
-        p1.setX(750);
-        p1.setY(750);
         pane.setOnKeyPressed(e -> {
-            if (e.getCode() == KeyCode.UP) {
-                p1.setY(p1.getY() - p1Speed);
+            if(e.getCode() == KeyCode.UP) {
+                p1Dx = 0;
+                p1Dy = -5;
             }
-            else if (e.getCode() == KeyCode.DOWN) {
-                p1.setY(p1.getY() + p1Speed);
+            if(e.getCode() == KeyCode.DOWN) {
+                p1Dx = 0;
+                p1Dy = 5;
             }
-            else if (e.getCode() == KeyCode.RIGHT) {
-                p1.setX(p1.getX() + p1Speed);
+            if(e.getCode() == KeyCode.RIGHT) {
+                p1Dx = 5;
+                p1Dy = 0;
             }
-            else if (e.getCode() == KeyCode.LEFT) {
-                p1.setX(p1.getX() - p1Speed);
+            if(e.getCode() == KeyCode.LEFT) {
+                p1Dx = -5;
+                p1Dy = 0;
             }
         });
 
-        p2.setX(100);
-        p2.setY(100);
+        p1.setX(p1.getX() + p1Dx);
+        p1.setY(p1.getY() + p1Dy);
 
-        pane.setOnKeyPressed(e -> {
-            if (e.getText().equals("W")) {
-                p2.setY(p2.getY() - p2Speed);
-            }
-            else if (e.getCode() == KeyCode.S) {
-                p2.setY(p2.getY() + p2Speed);
-            }
-            else if (e.getCode() == KeyCode.D) {
-                p2.setX(p2.getX() + p2Speed);
-            }
-            else if (e.getCode() == KeyCode.A) {
-                p2.setX(p2.getX() - p2Speed);
-            }
-        });
+        pane.getChildren().add(p1);
 
-        pane.getChildren().addAll(p1, p2);
-
-        Scene scene = new Scene(pane);
+        Scene scene = new Scene(pane, 750, 750);
         ps.setScene(scene);
         ps.show();
+
+        pane.requestFocus();
+    }
+
+    public Rectangle2D getBoundary(ImageView player, Image p) {
+        return new Rectangle2D(player.getX(), player.getY(), p.getRequestedWidth(), p.getRequestedHeight());
+    }
+
+    public boolean hits(ImageView p1, ImageView p2) {
+        return getBoundary(p1, p1.getImage()).intersects(getBoundary(p2, p2.getImage()));
     }
 }

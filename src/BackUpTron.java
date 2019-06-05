@@ -14,7 +14,7 @@ public class BackUpTron extends Application {
     Image yellowDown = new Image("YellowDown.gif", 150, 150, true, true);
 
     Image thanosLeft = new Image("ThanosLeft.gif", 150, 150, true, true);
-    Image thanosRight  = new Image("ThanosRight.gif", 150, 150, true, true);
+    Image thanosRight  = new Image("ThanosRight.png", 150, 150, true, true);
     Image thanosUp = new Image("ThanosUp.gif", 150, 150, true, true);
     Image thanosDown = new Image("ThanosDown.gif", 150, 150, true, true);
     ImageView p1 = new ImageView(yellowRight);
@@ -31,9 +31,18 @@ public class BackUpTron extends Application {
         Scene scene = new Scene(pane);
         ps.setScene(scene);
         ps.show();
+        pane.requestFocus();
     }
 
     public void move() {
+
+    }
+}
+
+class Sprite{
+
+
+    public Sprite(Image image) {
 
     }
 }
