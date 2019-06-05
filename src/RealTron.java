@@ -2,12 +2,14 @@ import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.event.Event;
 import javafx.event.EventHandler;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class RealTron extends Application {
@@ -58,6 +60,18 @@ public class RealTron extends Application {
 
         Scene scene = new Scene(pane, 400, 400);
         ps.setScene(scene);
+
+        if (hits(p1, p2)) {
+            Pane end = new Pane();
+            Text winner = new Text("YOU BOTH LOSE!");
+
+            winner.xProperty().bind(end.widthProperty().divide(2));
+            winner.yProperty().bind(end.heightProperty().divide(2));
+
+            Scene endGame = new Scene(pane, 500, 500);
+            ps.setScene(endGame);
+        }
+
         ps.show();
         pane.requestFocus();
 
@@ -111,5 +125,12 @@ public class RealTron extends Application {
         if (e.getText().equals("w")) {
             wdown = false;
         }
+    }
+    public Rectangle2D getBoundary(ImageView player, Image p) {
+        return new Rectangle2D(player.getX(), player.getY(), p.getRequestedWidth(), p.getRequestedHeight());
+    }
+
+    public boolean hits(ImageView p1, ImageView p2) {
+        return getBoundary(p1, p1.getImage()).intersects(getBoundary(p2, p2.getImage()));
     }
 }
