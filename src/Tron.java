@@ -4,6 +4,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.scene.input.KeyCode;
 
@@ -54,6 +55,18 @@ public class Tron extends Application {
 
         Scene scene = new Scene(pane, 750, 750);
         ps.setScene(scene);
+
+        if (hits(p1, p2)) {
+            Pane end = new Pane();
+            Text winner = new Text("YOU BOTH LOSE!");
+
+            winner.xProperty().bind(end.widthProperty().divide(2));
+            winner.yProperty().bind(end.heightProperty().divide(2));
+
+            Scene endGame = new Scene(pane, 500, 500);
+            ps.setScene(endGame);
+        }
+
         ps.show();
 
         pane.requestFocus();
