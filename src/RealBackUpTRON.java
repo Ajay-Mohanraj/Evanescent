@@ -14,17 +14,12 @@ public class RealBackUpTRON extends Application {
     Pane pane = new Pane();
 
     //Image yellowRight = new Image("YellowRight.gif", 150, 150, true, true);
-    Image yellowLeft = new Image("YellowLeft.gif", 150, 150, true, true);
-    Image yellowUp = new Image("YellowUp.gif", 150, 150, true, true);
-    Image yellowDown = new Image("YellowDown.gif", 150, 150, true, true);
+    Image green = new Image("Green.png", 150, 150, true, true);
 
-    Image thanosLeft = new Image("ThanosLeft.gif", 150, 150, true, true);
-    Image thanosRight = new Image("ThanosRight.gif", 150, 150, true, true);
-    Image thanosUp = new Image("ThanosUp.gif", 150, 150, true, true);
-    Image thanosDown = new Image("ThanosDown.gif", 150, 150, true, true);
+    Image thanos = new Image("Thanos.png", 150, 150, true, true);
 
-    ImageView p1 = new ImageView(yellowLeft);
-    ImageView p2 = new ImageView(thanosLeft);
+    ImageView p1 = new ImageView(green);
+    ImageView p2 = new ImageView(thanos);
 
     boolean wdown = false;
 
@@ -38,7 +33,7 @@ public class RealBackUpTRON extends Application {
     final int p2_down = 6;
     final int p2_right = 7;
 
-    String[] keys = {"w", "a", "s", "d", "UP", "LEFT", "DOWN", "RIGHT"};
+    String[] keys = {"w", "a", "s", "d", "Up", "Left", "Down", "Right"};
     Boolean[] keyDown = {false, false, false, false, false, false, false, false};
 
     public void start(Stage ps) {
@@ -71,37 +66,16 @@ public class RealBackUpTRON extends Application {
     }
 
     public void move(KeyEvent e) {
-        if (e.getText().equals("a")) {
-            while (p1.getX() > 0) {
-                p1.setX(p1.getX() - 5);
-            }
-        } else if (e.getText().equals("w")) {
-            //  while (p1.getY() > 0){
-            //      p1.setY(p1.getY()-5);
-            //  }
-            wdown = true;
-        } else if (e.getText().equals("d")) {
-            while (p1.getX() < 400) {
-                p1.setX(p1.getX() + 5);
-            }
-        } else if (e.getText().equals("s")) {
-            while (p1.getY() < 400) {
-                p1.setY(p1.getY() + 5);
-            }
-        }
-
-        while (e.getCode() == KeyCode.LEFT) {
-            p2.setX(p2.getX() - 5);
-        }
-        while (e.getCode() == KeyCode.UP) {
-            p2.setY(p2.getY() - 5);
-        }
-        while (e.getCode() == KeyCode.RIGHT) {
-            p2.setX(p2.getX() + 5);
-        }
-        while (e.getCode() == KeyCode.DOWN) {
-            p2.setY(p2.getY() + 5);
-        }
+    	for (int i = 0; i < keys.length; i++) {
+    		if (keys[i].equals(e.getText()) || keys[i].equals(e.getCode().getName())) {
+				//System.out.println(keys[i]);
+				// make value true
+                keyDown[i] = true;
+			}
+		}
+//		if (e.getText().equals("w")) {
+//			wdown = true;
+//		}
     }
 
     public void released(KeyEvent e) {
