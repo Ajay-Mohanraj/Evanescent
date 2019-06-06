@@ -25,7 +25,7 @@ public class RealTron extends Application {
     int p1Dx = 0;
     int p1Dy = 0;
     int p2Dy = 0;
-    int p2Dx = -5;
+    int p2Dx = 0;
 
     boolean wdown = false;
 
@@ -69,6 +69,14 @@ public class RealTron extends Application {
 
                             case "d": p1Dx = 5; p1Dy = 0;p1.setRotate(0);break;
 
+                            case "UP": p2Dx = 0;p2Dy = -5;p2.setRotate(270);break;
+
+                            case "LEFT": p2Dx = -5;p2Dy = 0;p2.setRotate(180);break;
+
+                            case "DOWN": p2Dx = 0; p2Dy = 5;p2.setRotate(90);break;
+
+                            case "RIGHT": p2Dx = 5; p2Dy = 0;p2.setRotate(0);break;
+
                         }
 
                         System.out.println(keys[i]);
@@ -77,6 +85,8 @@ public class RealTron extends Application {
                 }
                 p1.setX(p1.getX() + p1Dx);
                 p1.setY(p1.getY() + p1Dy);
+                p2.setX(p2.getX() + p2Dx);
+                p2.setY(p2.getY() + p2Dy);
 
             }
 
