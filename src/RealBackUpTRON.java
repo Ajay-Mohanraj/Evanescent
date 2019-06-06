@@ -68,9 +68,9 @@ public class RealBackUpTRON extends Application {
     public void move(KeyEvent e) {
     	for (int i = 0; i < keys.length; i++) {
     		if (keys[i].equals(e.getText()) || keys[i].equals(e.getCode().getName())) {
-				System.out.println(keys[i]);
+				//System.out.println(keys[i]);
 				// make value true
-
+                keyDown[i] = true;
 			}
 		}
 //		if (e.getText().equals("w")) {
