@@ -22,7 +22,7 @@ public class RealTron extends Application {
     ImageView p1 = new ImageView(green);
     ImageView p2 = new ImageView(thanos);
 
-    int p1Dx = 5;
+    int p1Dx = 0;
     int p1Dy = 0;
     int p2Dy = 0;
     int p2Dx = -5;
@@ -61,13 +61,13 @@ public class RealTron extends Application {
                 for (int i = 0; i < 8; i++) {
                     if (keyDown[i]) {
                         switch (keys[i]){
-                            case "w": p1Dx = 0;p1Dy = -5;p1.setRotate(90);
+                            case "w": p1Dx = 0;p1Dy = -5;p1.setRotate(270);break;
 
-                            case "a": p1Dx = -5;p1Dy = 0;p1.setRotate(180);
+                            case "a": p1Dx = -5;p1Dy = 0;p1.setRotate(180);break;
 
-                            case "s": p1Dx = 0; p1Dy = 5;p1.setRotate(270);
+                            case "s": p1Dx = 0; p1Dy = 5;p1.setRotate(90);break;
 
-                            case "d": p1Dx = 5; p1Dy = 0;p1.setRotate(0);
+                            case "d": p1Dx = 5; p1Dy = 0;p1.setRotate(0);break;
 
                         }
 
