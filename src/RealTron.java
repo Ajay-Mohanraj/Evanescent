@@ -27,8 +27,6 @@ public class RealTron extends Application {
     int p2Dy = 0;
     int p2Dx = 0;
 
-    boolean wdown = false;
-
     final int p1_up = 0;
     final int p1_left = 1;
     final int p1_down = 2;
@@ -150,7 +148,19 @@ public class RealTron extends Application {
     }
 
     public Rectangle2D getBoundary(ImageView player, Image p) {
-        return new Rectangle2D(player.getX(), player.getY(), p.getRequestedWidth(), p.getRequestedHeight());
+        if (player.getRotate() == 0 || player.getRotate() == 180) {
+            return new Rectangle2D(player.getX() + 9, player.getY() + 30, p.getRequestedWidth() - 18, p.getRequestedHeight() - 51);
+        }
+
+        else if (player.getRotate() == 90 || player.getRotate() == 270) {
+            return new Rectangle2D(player.getX() + 30, player.getY() + 9, p.getRequestedWidth() - 51, p.getRequestedHeight() - 18);
+
+        }
+        return new Rectangle2D(0, 0, 1, 1);
+    }
+
+    public void drawPath() {
+
     }
 
     public boolean hits(ImageView p1, ImageView p2) {
