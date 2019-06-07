@@ -108,6 +108,9 @@ public class RealTron extends Application {
                                 p2Dy = 0;
                                 p2.setRotate(0);
                                 break;
+
+                            default:
+                                break;
                         }
 
                         //System.out.println(keys[i]);
@@ -119,6 +122,7 @@ public class RealTron extends Application {
 
                 p2.setX(p2.getX() + p2Dx);
                 p2.setY(p2.getY() + p2Dy);
+
                 if (hits(p1, p2)) {
                     Pane end = new Pane();
                     Text winner = new Text("YOU BOTH LOSE!");
@@ -130,7 +134,6 @@ public class RealTron extends Application {
                     Scene endGame = new Scene(end, 1000, 1000);
                     ps.setScene(endGame);
                     ps.show();
-
                 }
 
 
