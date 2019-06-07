@@ -136,6 +136,7 @@ public class RealTron extends Application {
 
             Scene endGame = new Scene(pane, 1000, 1000);
             ps.setScene(endGame);
+            ps.show();
         }
 
         ps.show();
@@ -159,7 +160,7 @@ public class RealTron extends Application {
         }
     }
     public Rectangle2D getBoundary(ImageView player, Image p) {
-        return new Rectangle2D(player.getX(), player.getY(), p.getRequestedWidth(), p.getRequestedHeight());
+        return new Rectangle2D(player.getX(), player.getY(), p.getWidth(), p.getHeight());
     }
 
     public boolean hits(ImageView p1, ImageView p2) {
