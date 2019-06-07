@@ -25,7 +25,7 @@ public class RealTron extends Application {
     int p1Dx = 0;
     int p1Dy = 0;
     int p2Dy = 0;
-    int p2Dx = -5;
+    int p2Dx = 0;
 
     boolean wdown = false;
 
@@ -49,6 +49,7 @@ public class RealTron extends Application {
 
         p2.setX(650);
         p2.setY(650);
+        p2.setRotate(180);
 
         pane.getChildren().addAll(p1, p2);
 
