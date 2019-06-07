@@ -39,7 +39,7 @@ public class RealTron extends Application {
     final int p2_down = 6;
     final int p2_right = 7;
 
-    String[] keys = {"w", "a", "s", "d", "UP", "LEFT", "DOWN", "RIGHT"};
+    String[] keys = {"w", "a", "s", "d", "Up", "Left", "Down", "Right"};
     Boolean[] keyDown = {false, false, false, false, false, false, false, false};
 
     public void start(Stage ps) {
@@ -58,25 +58,67 @@ public class RealTron extends Application {
         new AnimationTimer() {
             @Override
             public void handle(long now) {
-                for (int i = 0; i < 8; i++) {
+                for (int i = 0; i < keyDown.length; i++) {
                     if (keyDown[i]) {
                         switch (keys[i]){
-                            case "w": p1Dx = 0;p1Dy = -5;p1.setRotate(270);break;
+                            case "w":
+                                p1Dx = 0;
+                                p1Dy = -5;
+                                p1.setRotate(270);
+                                break;
 
-                            case "a": p1Dx = -5;p1Dy = 0;p1.setRotate(180);break;
+                            case "a":
+                                p1Dx = -5;
+                                p1Dy = 0;
+                                p1.setRotate(180);
+                                break;
 
-                            case "s": p1Dx = 0; p1Dy = 5;p1.setRotate(90);break;
+                            case "s":
+                                p1Dx = 0;
+                                p1Dy = 5;
+                                p1.setRotate(90);
+                                break;
 
-                            case "d": p1Dx = 5; p1Dy = 0;p1.setRotate(0);break;
+                            case "d":
+                                p1Dx = 5;
+                                p1Dy = 0;
+                                p1.setRotate(0);
+                                break;
 
+                            case "Up":
+                                p2Dx = 0;
+                                p2Dy = -5;
+                                p2.setRotate(270);
+                                break;
+
+                            case "Left":
+                                p2Dx = -5;
+                                p2Dy = 0;
+                                p2.setRotate(180);
+                                break;
+
+                            case "Down":
+                                p2Dx = 0;
+                                p2Dy = 5;
+                                p2.setRotate(90);
+                                break;
+
+                            case "Right":
+                                p2Dx = 5;
+                                p2Dy = 0;
+                                p2.setRotate(0);
+                                break;
                         }
 
-                        System.out.println(keys[i]);
-                        keyDown[i] = false;
+                        //System.out.println(keys[i]);
+                       keyDown[i] = false;
                     }
                 }
                 p1.setX(p1.getX() + p1Dx);
                 p1.setY(p1.getY() + p1Dy);
+
+                p2.setX(p2.getX() + p2Dx);
+                p2.setY(p2.getY() + p2Dy);
 
             }
 
@@ -103,7 +145,7 @@ public class RealTron extends Application {
 
     public void move(KeyEvent e) {
         for (int i = 0; i < keys.length; i++) {
-            if (keys[i].equals(e.getText())) {
+            if (keys[i].equals(e.getText()) || keys[i].equals(e.getCode().getName())) {
                 keyDown[i] = true;
             }
         }
@@ -111,7 +153,7 @@ public class RealTron extends Application {
     }
     public void released(KeyEvent e) {
         for (int i = 0; i < keys.length; i++) {
-            if (keys[i].equals(e.getText())) {
+            if (keys[i].equals(e.getText()) || keys[i].equals(e.getCode().getName())) {
                 keyDown[i] = false;
             }
         }

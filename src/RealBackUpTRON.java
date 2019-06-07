@@ -48,32 +48,34 @@ public class RealBackUpTRON extends Application {
         pane.getChildren().addAll(p1, p2);
 
         pane.setOnKeyPressed(e -> move(e));
-        pane.setOnKeyReleased(e -> released(e));
+        //pane.setOnKeyReleased(e -> released(e));
 
 
         new AnimationTimer() {
             @Override
+
             public void handle(long now) {
-                //for (int k = 0; k < keyDown.length; k++) {
+
                 if (keyDown[p1_up]) {
                     p1.setY(p1.getY()-5);
                 }
-                else if (keyDown[p1_left]) {
+                if (keyDown[p1_left]) {
                     p1.setX(p1.getX()-5);
                 }
-                else if (keyDown[p1_down]) {
+                if (keyDown[p1_down]) {
                     p1.setY(p1.getY()+5);
                 }
-                else if (keyDown[p1_right]) {
-                    p1.setX(p1.getX()+5);
-                    //p1Dx = 5;
+                if (keyDown[p1_right]) {
+                    //p1.setX(p1.getX()+5);
+                    p1Dx = 5;
                 }
+
 
                 //}
 //                if (wdown) {
 //                    p1.setY(p1.getY()-5);
 //                }
-                //p1.setX(p1.getX() + p1Dx);
+                p1.setX(p1.getX() + p1Dx);
             }
 
         }.start();
