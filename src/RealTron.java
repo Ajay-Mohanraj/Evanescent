@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 
 public class RealTron extends Application {
     Pane pane = new Pane();
-    // hi
+
     //Image yellowRight = new Image("YellowRight.gif", 150, 150, true, true);
     Image green= new Image("Green.png", 96, 96, true, true);
     Image thanos = new Image("Thanos.png", 96, 96, true, true);
