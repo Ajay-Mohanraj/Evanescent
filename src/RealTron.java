@@ -119,26 +119,29 @@ public class RealTron extends Application {
 
                 p2.setX(p2.getX() + p2Dx);
                 p2.setY(p2.getY() + p2Dy);
+                if (hits(p1, p2)) {
+                    Pane end = new Pane();
+                    Text winner = new Text("YOU BOTH LOSE!");
+
+                    winner.xProperty().bind(end.widthProperty().divide(2));
+                    winner.yProperty().bind(end.heightProperty().divide(2));
+                    end.getChildren().add(winner);
+
+                    Scene endGame = new Scene(end, 1000, 1000);
+                    ps.setScene(endGame);
+                    ps.show();
+
+                }
+
+
 
             }
+
 
         }.start();
 
         Scene scene = new Scene(pane, 1000, 1000);
         ps.setScene(scene);
-
-        if (hits(p1, p2)) {
-            Pane end = new Pane();
-            Text winner = new Text("YOU BOTH LOSE!");
-
-            winner.xProperty().bind(end.widthProperty().divide(2));
-            winner.yProperty().bind(end.heightProperty().divide(2));
-
-            Scene endGame = new Scene(pane, 1000, 1000);
-            ps.setScene(endGame);
-            ps.show();
-        }
-
         ps.show();
         pane.requestFocus();
 
@@ -152,13 +155,13 @@ public class RealTron extends Application {
         }
 
     }
-    public void released(KeyEvent e) {
-        for (int i = 0; i < keys.length; i++) {
-            if (keys[i].equals(e.getText()) || keys[i].equals(e.getCode().getName())) {
-                keyDown[i] = false;
-            }
-        }
-    }
+//    public void released(KeyEvent e) {
+//        for (int i = 0; i < keys.length; i++) {
+//            if (keys[i].equals(e.getText()) || keys[i].equals(e.getCode().getName())) {
+//                keyDown[i] = false;
+//            }
+//        }
+//    }
     public Rectangle2D getBoundary(ImageView player, Image p) {
         return new Rectangle2D(player.getX(), player.getY(), p.getWidth(), p.getHeight());
     }
