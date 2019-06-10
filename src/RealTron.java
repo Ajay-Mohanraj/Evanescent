@@ -19,8 +19,8 @@ public class RealTron extends Application {
     Pane pane = new Pane();
 
     //Image yellowRight = new Image("YellowRight.gif", 150, 150, true, true);
-    Image green = new Image("Green.png", 150, 150, true, true);
-    Image thanos = new Image("Thanos.png", 150, 150, true, true);
+    Image green = new Image("Green.png", 96, 150, true, true);
+    Image thanos = new Image("Thanos.png", 96, 150, true, true);
 
 
     ImageView p1 = new ImageView(green);
@@ -54,7 +54,7 @@ public class RealTron extends Application {
         pane.getChildren().addAll(p1, p2);
 
         pane.setOnKeyPressed(e -> move(e));
-        // pane.setOnKeyReleased(e -> released(e));
+        pane.setOnKeyReleased(e -> released(e));
 
         new AnimationTimer() {
             @Override
@@ -117,7 +117,7 @@ public class RealTron extends Application {
                         }
 
                         //System.out.println(keys[i]);
-                       keyDown[i] = false;
+                       //keyDown[i] = false;
                     }
                 }
                 p1.setX(p1.getX() + p1Dx);
@@ -126,17 +126,17 @@ public class RealTron extends Application {
                 p2.setX(p2.getX() + p2Dx);
                 p2.setY(p2.getY() + p2Dy);
 
-                if ((p1.getRotate() == up && p1.getY() <= 0)
-                        || (p1.getRotate() == left && p1.getX() <= 0)
-                        || (p1.getRotate() == down && p1.getY() >= pane.getHeight())
-                        || (p1.getX() >= pane.getWidth())) {
+                if ((p1.getRotate() == up && p1.getY() + 9 <= 0)
+                        || (p1.getRotate() == left && p1.getX() + 9 <= 0)
+                        || (p1.getRotate() == down && p1.getY() + 66 >= pane.getHeight())
+                        || (p1.getRotate() == right && p1.getX() + 66 >= pane.getWidth())) {
                     pane.getChildren().remove(p1);
                 }
-//
-                if ((p2.getRotate() == up && p2.getY() <= 0)
-                        || (p2.getRotate() == left && p2.getX() <= 0)
-                        || (p2.getRotate() == down && p2.getY() >= pane.getHeight())
-                        || (p2.getX() >= pane.getWidth())) {
+
+                if ((p2.getRotate() == up && p2.getY() + 9 <= 0)
+                        || (p2.getRotate() == left && p2.getX() + 9 <= 0)
+                        || (p2.getRotate() == down && p2.getY() + 66 >= pane.getHeight())
+                        || (p2.getRotate() == right && p2.getX() + 66 >= pane.getWidth())) {
                     pane.getChildren().remove(p2);
                 }
 
@@ -175,13 +175,13 @@ public class RealTron extends Application {
         }
 
     }
-//    public void released(KeyEvent e) {
-//        for (int i = 0; i < keys.length; i++) {
-//            if (keys[i].equals(e.getText()) || keys[i].equals(e.getCode().getName())) {
-//                keyDown[i] = false;
-//            }
-//        }
-//    }
+    public void released(KeyEvent e) {
+        for (int i = 0; i < keys.length; i++) {
+            if (keys[i].equals(e.getText()) || keys[i].equals(e.getCode().getName())) {
+                keyDown[i] = false;
+            }
+        }
+    }
     public Rectangle2D getBoundary(ImageView player, Image p) {
         return new Rectangle2D(player.getX(), player.getY(), p.getWidth(), p.getHeight());
     }
