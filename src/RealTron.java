@@ -132,7 +132,7 @@ public class RealTron extends Application {
                         || (p1.getX() >= pane.getWidth())) {
                     pane.getChildren().remove(p1);
                 }
-
+//
                 if ((p2.getRotate() == up && p2.getY() <= 0)
                         || (p2.getRotate() == left && p2.getX() <= 0)
                         || (p2.getRotate() == down && p2.getY() >= pane.getHeight())
