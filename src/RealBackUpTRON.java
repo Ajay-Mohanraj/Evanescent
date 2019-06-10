@@ -11,6 +11,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class RealBackUpTRON extends Application {
+    double p1Dx = 5;
     Pane pane = new Pane();
 
     //Image yellowRight = new Image("YellowRight.gif", 150, 150, true, true);
@@ -47,18 +48,40 @@ public class RealBackUpTRON extends Application {
         pane.getChildren().addAll(p1, p2);
 
         pane.setOnKeyPressed(e -> move(e));
-        pane.setOnKeyReleased(e -> released(e));
+        //pane.setOnKeyReleased(e -> released(e));
+
 
         new AnimationTimer() {
             @Override
+
             public void handle(long now) {
-                if (wdown) {
+
+                if (keyDown[p1_up]) {
                     p1.setY(p1.getY()-5);
                 }
+                if (keyDown[p1_left]) {
+                    p1.setX(p1.getX()-5);
+                }
+                if (keyDown[p1_down]) {
+                    p1.setY(p1.getY()+5);
+                }
+                if (keyDown[p1_right]) {
+                    //p1.setX(p1.getX()+5);
+                    p1Dx = 5;
+                }
+
+
+                //}
+//                if (wdown) {
+//                    p1.setY(p1.getY()-5);
+//                }
+                p1.setX(p1.getX() + p1Dx);
             }
+
         }.start();
 
-        Scene scene = new Scene(pane, 750, 750);
+
+        Scene scene = new Scene(pane, 400, 400);
         ps.setScene(scene);
         ps.show();
         pane.requestFocus();
@@ -68,9 +91,10 @@ public class RealBackUpTRON extends Application {
     public void move(KeyEvent e) {
     	for (int i = 0; i < keys.length; i++) {
     		if (keys[i].equals(e.getText()) || keys[i].equals(e.getCode().getName())) {
-				System.out.println(keys[i]);
-				// make value true
+				//System.out.println(keys[i]);
+				//make value true
                 keyDown[i] = true;
+
 			}
 		}
 //		if (e.getText().equals("w")) {
@@ -79,8 +103,13 @@ public class RealBackUpTRON extends Application {
     }
 
     public void released(KeyEvent e) {
-        if (e.getText().equals("w")) {
-            wdown = false;
+        for (int i = 0; i < keys.length; i++) {
+            if (keys[i].equals(e.getText()) || keys[i].equals(e.getCode().getName())) {
+                //System.out.println(keys[i]);
+                // make value true
+                keyDown[i] = false;
+
+            }
         }
     }
 }
