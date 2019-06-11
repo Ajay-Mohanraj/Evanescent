@@ -31,6 +31,8 @@ public class RealTron extends Application {
 
     BorderPane end = new BorderPane();
     Text winner = new Text("");
+    Scene endGame = new Scene(end, 1000, 1000);
+
 
     ArrayList<Rectangle> paths = new ArrayList<Rectangle>();
 
@@ -59,6 +61,7 @@ public class RealTron extends Application {
 
         p2.setX(650);
         p2.setY(650);
+        p2.setRotate(180);
 
         pane.getChildren().addAll(p1, p2);
 
@@ -123,12 +126,12 @@ public class RealTron extends Application {
                         keyDown[i] = false;
                     }
                 }
+                drawPath(p1, Color.INDIGO);
+                drawPath(p2, Color.LIGHTGREEN);
                 p1.setX(p1.getX()+p1Dx);
                 p1.setY(p1.getY()+p1Dy);
                 p2.setX(p2.getX()+p2Dx);
                 p2.setY(p2.getY()+p2Dy);
-                drawPath(p1, Color.INDIGO);
-                drawPath(p2, Color.LIGHTGREEN);
 
                 if (hits(p1, p2)) {
                     winner.setTextAlignment(TextAlignment.CENTER);
@@ -157,6 +160,24 @@ public class RealTron extends Application {
 
                     Scene endGame = new Scene(end, 1000, 1000);
                     ps.setScene(endGame);
+                }
+                for (Rectangle rect : paths) {
+                    if (hits(p1, rect)) {
+                        winner.setText("YOU HAVE SUCCESSFULLY SAVED YOUR RAM");
+                        winner.xProperty().bind(end.widthProperty().divide(2));
+                        winner.yProperty().bind(end.heightProperty().divide(2));
+
+                        end.setCenter(winner);
+                        ps.setScene(endGame);
+                    }
+                    else if (hits(p2, rect)) {
+                        winner.setText("ThanosTron WINS!!!\nHALF YOUR RAM IS GONE!!!\nCLICK HERE TO DOWNLOAD MORE RAM");
+                        winner.xProperty().bind(end.widthProperty().divide(2));
+                        winner.yProperty().bind(end.heightProperty().divide(2));
+
+                        end.setCenter(winner);
+                        ps.setScene(endGame);
+                    }
                 }
             }
         }.start();
@@ -196,14 +217,14 @@ public class RealTron extends Application {
         Rectangle path = new Rectangle();
 
         if (player.getRotate() == 0) {
-            path.setX(player.getX() + 6);
+            path.setX(player.getX() + 3);
             path.setY(player.getY() + 27);
             path.setWidth(5);
             path.setHeight(42);
         }
 
         else if (player.getRotate() == 180) {
-            path.setX(player.getX() + 87);
+            path.setX(player.getX() + 90);
             path.setY(player.getY() + 27);
             path.setWidth(5);
             path.setHeight(42);
@@ -211,30 +232,20 @@ public class RealTron extends Application {
 
         else if (player.getRotate() == 90) {
             path.setX(player.getX() + 27);
-            path.setY(player.getY() + 6);
+            path.setY(player.getY() + 3);
             path.setWidth(42);
             path.setHeight(5);
         }
 
         else if (player.getRotate() == 270) {
             path.setX(player.getX() + 27);
-            path.setY(player.getY() + 87);
+            path.setY(player.getY() + 90);
             path.setWidth(42);
             path.setHeight(5);
         }
 
         paths.add(path);
 
-        for (Rectangle rect : paths) {
-            if (rect.intersects(player.getX() + 9, player.getY() + 30, player.getImage().getRequestedWidth() - 18, player.getImage().getRequestedHeight() - 51)) {
-                BorderPane bp = new BorderPane();
-                bp.setCenter(new Text("It Works"));
-                Stage stage  = new Stage();
-                Scene test = new Scene(bp);
-                stage.setScene(test);
-                stage.show();
-            }
-        }
         path.setFill(color);
         path.setStroke(color);
         pane.getChildren().add(path);
@@ -242,5 +253,8 @@ public class RealTron extends Application {
 
     public boolean hits(ImageView p1, ImageView p2) {
         return getBoundary(p1, p1.getImage()).intersects(getBoundary(p2, p2.getImage()));
+    }
+    public boolean hits(ImageView player, Rectangle r) {
+        return getBoundary(player, player.getImage()).intersects(getBoundary(r));
     }
 }
