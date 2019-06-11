@@ -226,7 +226,7 @@ public class RealTron extends Application {
         paths.add(path);
 
         for (Rectangle rect : paths) {
-            if (rect.intersects(player.getX() + 9, player.getY() + 30, player.getImage().getRequestedWidth() - 18, player.getImage().getRequestedHeight() - 51)) {
+            if (hits(p1, rect) || hits(p2, rect)) {
                 BorderPane bp = new BorderPane();
                 bp.setCenter(new Text("It Works"));
                 Stage stage  = new Stage();
@@ -243,4 +243,8 @@ public class RealTron extends Application {
     public boolean hits(ImageView p1, ImageView p2) {
         return getBoundary(p1, p1.getImage()).intersects(getBoundary(p2, p2.getImage()));
     }
+    public boolean hits(ImageView player, Rectangle r) {
+        return getBoundary(player, player.getImage()).intersects(getBoundary(r));
+    }
 }
+//
