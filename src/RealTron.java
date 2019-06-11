@@ -23,7 +23,7 @@ public class RealTron extends Application {
     Pane pane = new Pane();
 
     //Image yellowRight = new Image("YellowRight.gif", 150, 150, true, true);
-    Image green= new Image("Green.png", 96, 96, true, true);
+    Image green = new Image("Green.png", 96, 96, true, true);
     Image thanos = new Image("Thanos.png", 96, 96, true, true);
 
     ImageView p1 = new ImageView(thanos);
@@ -39,20 +39,15 @@ public class RealTron extends Application {
     int p2Dy = 0;
     int p2Dx = 0;
 
-    final int p1_up = 0;
-    final int p1_left = 1;
-    final int p1_down = 2;
-    final int p1_right = 3;
-
-    final KeyCode P2UP = KeyCode.UP;
-    final KeyCode P2LEFT = KeyCode.LEFT;
-    final KeyCode P2DOWN = KeyCode.DOWN;
-    final KeyCode P2RIGHT = KeyCode.RIGHT;
-
-    KeyCode[] keys = {KeyCode.W, KeyCode.A, KeyCode.S, KeyCode.D, KeyCode.UP, KeyCode.LEFT, KeyCode.DOWN, KeyCode.RIGHT};
+    String[] keys = {"w", "a", "s", "d", "Up", "Left", "Down", "Right"};
     Boolean[] keyDown = {false, false, false, false, false, false, false, false};
 
     public void start(Stage ps) {
+
+        int up = 270;
+        int left = 180;
+        int down = 90;
+        int right = 0;
 
         p1.setX(0);
         p1.setY(0);
@@ -63,64 +58,67 @@ public class RealTron extends Application {
         pane.getChildren().addAll(p1, p2);
 
         pane.setOnKeyPressed(e -> move(e));
-        // pane.setOnKeyReleased(e -> released(e));
+        pane.setOnKeyReleased(e -> released(e));
 
         new AnimationTimer() {
             @Override
             public void handle(long now) {
-                for (int i = 0; i < 8; i++) {
+                for (int i = 0; i < keys.length; i++) {
                     if (keyDown[i]) {
-                        switch (i) {
-                            case 0:
+                        switch (keys[i]) {
+                            case "w":
                                 p1Dx = 0;
                                 p1Dy = -5;
-                                p1.setRotate(270);
+                                p1.setRotate(up);
                                 break;
 
-                            case 1:
+                            case "a":
                                 p1Dx = -5;
                                 p1Dy = 0;
-                                p1.setRotate(180);
+                                p1.setRotate(left);
                                 break;
 
-                            case 2:
+                            case "s":
                                 p1Dx = 0;
                                 p1Dy = 5;
-                                p1.setRotate(90);
+                                p1.setRotate(down);
                                 break;
 
-                            case 3:
+                            case "d":
                                 p1Dx = 5;
                                 p1Dy = 0;
-                                p1.setRotate(0);
+                                p1.setRotate(right);
                                 break;
 
-                            case 4:
+                            case "Up":
                                 p2Dx = 0;
                                 p2Dy = -5;
-                                p2.setRotate(270);
+                                p2.setRotate(up);
                                 break;
 
-                            case 5:
+                            case "Left":
                                 p2Dx = -5;
                                 p2Dy = 0;
-                                p2.setRotate(180);
+                                p2.setRotate(left);
                                 break;
 
-                            case 6:
+                            case "Down":
                                 p2Dx = 0;
                                 p2Dy = 5;
-                                p2.setRotate(90);
+                                p2.setRotate(down);
                                 break;
 
-                            case 7:
+                            case "Right":
                                 p2Dx = 5;
                                 p2Dy = 0;
-                                p2.setRotate(0);
+                                p2.setRotate(right);
+                                break;
+
+                            default:
                                 break;
                         }
-                        System.out.println(keys[i]);
-                        keyDown[i] = false;
+                        //System.out.println(keys[i]);
+                        //keyDown[i] = false;
                     }
                 }
                 p1.setX(p1.getX()+p1Dx);
@@ -129,6 +127,20 @@ public class RealTron extends Application {
                 p2.setY(p2.getY()+p2Dy);
                 drawPath(p1, Color.INDIGO);
                 drawPath(p2, Color.LIGHTGREEN);
+
+                if ((p1.getRotate() == up && p1.getY() + 9 <= 0)
+                        || (p1.getRotate() == left && p1.getX() + 9 <= 0)
+                        || (p1.getRotate() == down && p1.getY() + 66 >= pane.getHeight())
+                        || (p1.getRotate() == right && p1.getX() + 66 >= pane.getWidth())) {
+                    pane.getChildren().remove(p1);
+                }
+
+                if ((p2.getRotate() == up && p2.getY() + 9 <= 0)
+                        || (p2.getRotate() == left && p2.getX() + 9 <= 0)
+                        || (p2.getRotate() == down && p2.getY() + 66 >= pane.getHeight())
+                        || (p2.getRotate() == right && p2.getX() + 66 >= pane.getWidth())) {
+                    pane.getChildren().remove(p2);
+                }
 
                 if (hits(p1, p2)) {
                     winner.setTextAlignment(TextAlignment.CENTER);
@@ -168,12 +180,19 @@ public class RealTron extends Application {
     }
 
     public void move(KeyEvent e) {
-        for (int i = 0; i < 8; i++) {
-            if (keys[i] == e.getCode()) {
+        for (int i = 0; i < keys.length; i++) {
+            if (keys[i].equals(e.getText()) || keys[i].equals(e.getCode().getName())) {
                 keyDown[i] = true;
             }
         }
+    }
 
+    public void released(KeyEvent e) {
+        for (int i = 0; i < keys.length; i++) {
+            if (keys[i].equals(e.getText()) || keys[i].equals(e.getCode().getName())) {
+                keyDown[i] = false;
+            }
+        }
     }
 
     public Rectangle2D getBoundary(ImageView player, Image p) {
@@ -224,17 +243,6 @@ public class RealTron extends Application {
         }
 
         paths.add(path);
-
-        for (Rectangle rect : paths) {
-            if (hits(p1, rect) || hits(p2, rect)) {
-                BorderPane bp = new BorderPane();
-                bp.setCenter(new Text("It Works"));
-                Stage stage  = new Stage();
-                Scene test = new Scene(bp);
-                stage.setScene(test);
-                stage.show();
-            }
-        }
         path.setFill(color);
         path.setStroke(color);
         pane.getChildren().add(path);
