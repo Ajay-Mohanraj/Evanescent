@@ -73,48 +73,48 @@ public class RealTron extends Application {
                         switch (i) {
                             case 0:
                                 p1Dx = 0;
-                                p1Dy = -5;
+                                p1Dy = -10;
                                 p1.setRotate(270);
                                 break;
 
                             case 1:
-                                p1Dx = -5;
+                                p1Dx = -10;
                                 p1Dy = 0;
                                 p1.setRotate(180);
                                 break;
 
                             case 2:
                                 p1Dx = 0;
-                                p1Dy = 5;
+                                p1Dy = 10;
                                 p1.setRotate(90);
                                 break;
 
                             case 3:
-                                p1Dx = 5;
+                                p1Dx = 10;
                                 p1Dy = 0;
                                 p1.setRotate(0);
                                 break;
 
                             case 4:
                                 p2Dx = 0;
-                                p2Dy = -5;
+                                p2Dy = -10;
                                 p2.setRotate(270);
                                 break;
 
                             case 5:
-                                p2Dx = -5;
+                                p2Dx = -10;
                                 p2Dy = 0;
                                 p2.setRotate(180);
                                 break;
 
                             case 6:
                                 p2Dx = 0;
-                                p2Dy = 5;
+                                p2Dy = 10;
                                 p2.setRotate(90);
                                 break;
 
                             case 7:
-                                p2Dx = 5;
+                                p2Dx = 10;
                                 p2Dy = 0;
                                 p2.setRotate(0);
                                 break;
