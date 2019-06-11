@@ -188,6 +188,10 @@ public class RealTron extends Application {
         return new Rectangle2D(0, 0, 1, 1);
     }
 
+    public Rectangle2D getBoundary(Rectangle r) {
+        return new Rectangle2D(r.getX(), r.getY(), r.getWidth(), r.getHeight());
+    }
+
     public void drawPath(ImageView player, Color color) {
         Rectangle path = new Rectangle();
 
@@ -223,8 +227,12 @@ public class RealTron extends Application {
 
         for (Rectangle rect : paths) {
             if (rect.intersects(player.getX() + 9, player.getY() + 30, player.getImage().getRequestedWidth() - 18, player.getImage().getRequestedHeight() - 51)) {
-                BorderPane pane = new BorderPane();
-                pane.setCenter(new Text("It Works"));
+                BorderPane bp = new BorderPane();
+                bp.setCenter(new Text("It Works"));
+                Stage stage  = new Stage();
+                Scene test = new Scene(bp);
+                stage.setScene(test);
+                stage.show();
             }
         }
         path.setFill(color);
