@@ -18,7 +18,7 @@ public class Tron extends Application {
     public void start(Stage ps) {
         Pane pane = new Pane();
 
-        Image thanos = new Image("Thanos.png", 150, 150, true, true);
+        Image thanos = new Image("Thanos(OLD).png", 150, 150, true, true);
         ImageView p1 = new ImageView(thanos);
         p1.setX(150);
         p1.setX(150);
