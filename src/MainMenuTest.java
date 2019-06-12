@@ -66,235 +66,241 @@ public class MainMenuTest extends Application {
         pane.setOnKeyPressed(e -> move(e));
         // pane.setOnKeyReleased(e -> released(e));
 
+        // request focus problem / maybe wrong pane?
+
         Scene scene = new Scene(pane, 1920, 1080);
         Scene scene1 = new Scene(mainMenuPane, 1920, 1080);
 
         ps.setScene(scene1);
-        mainMenuPane.setOnKeyPressed(e ->{
-            if(e.getCode() == KeyCode.ENTER){
+        mainMenuPane.setOnKeyPressed(e -> {
+            if (e.getCode() == KeyCode.ENTER){
+                ps.setScene(scene);
+                new AnimationTimer() {
+                    @Override
+                    public void handle(long now) {
+                        for (int i = 0; i < 8; i++) {
+                            if (keyDown[i]) {
+                                switch (i) {
+                                    case 0:
+                                        if (p1.getRotate() == 90) {
+                                            break;
+                                        }
+                                        if (p1.getRotate() == 0) {
+                                            p1.setX(p1.getX() - 21);
+                                            p1.setY(p1.getY() - 21);
+                                        }
+                                        if (p1.getRotate() == 180) {
+                                            p1.setX(p1.getX() + 21);
+                                            p1.setY(p1.getY() - 21);
+                                        }
 
-            }
-            ps.setScene(scene);
-            new AnimationTimer() {
-                @Override
-                public void handle(long now) {
-                    for (int i = 0; i < 8; i++) {
-                        if (keyDown[i]) {
-                            switch (i) {
-                                case 0:
-                                    if (p1.getRotate() == 90) {
+                                        p1Dx = 0;
+                                        p1Dy = -5;
+
+                                        p1.setRotate(270);
                                         break;
-                                    }
-                                    if (p1.getRotate() == 0) {
-                                        p1.setX(p1.getX() - 21);
-                                        p1.setY(p1.getY() - 21);
-                                    }
-                                    if (p1.getRotate() == 180) {
-                                        p1.setX(p1.getX() + 21);
-                                        p1.setY(p1.getY() - 21);
-                                    }
 
-                                    p1Dx = 0;
-                                    p1Dy = -5;
+                                    case 1:
+                                        if (p1.getRotate() == 0) {
+                                            break;
+                                        }
+                                        if (p1.getRotate() == 90) {
+                                            p1.setX(p1.getX() - 21);
+                                            p1.setY(p1.getY() - 21);
+                                        }
+                                        if(p1.getRotate() == 270) {
+                                            p1.setX(p1.getX() - 21);
+                                            p1.setY(p1.getY() + 21);
+                                        }
+                                        p1Dx = -5;
+                                        p1Dy = 0;
 
-                                    p1.setRotate(270);
-                                    break;
-
-                                case 1:
-                                    if (p1.getRotate() == 0) {
+                                        p1.setRotate(180);
                                         break;
-                                    }
-                                    if (p1.getRotate() == 90) {
-                                        p1.setX(p1.getX() - 21);
-                                        p1.setY(p1.getY() - 21);
-                                    }
-                                    if(p1.getRotate() == 270) {
-                                        p1.setX(p1.getX() - 21);
-                                        p1.setY(p1.getY() + 21);
-                                    }
-                                    p1Dx = -5;
-                                    p1Dy = 0;
 
-                                    p1.setRotate(180);
-                                    break;
+                                    case 2:
+                                        if (p1.getRotate() == 270) {
+                                            break;
+                                        }
+                                        if (p1.getRotate() == 0) {
+                                            p1.setX(p1.getX() - 21);
+                                            p1.setY(p1.getY() + 21);
+                                        }
+                                        if(p1.getRotate() == 180) {
+                                            p1.setX(p1.getX() + 21);
+                                            p1.setY(p1.getY() + 21);
+                                        }
+                                        p1Dx = 0;
+                                        p1Dy = 5;
 
-                                case 2:
-                                    if (p1.getRotate() == 270) {
+                                        p1.setRotate(90);
                                         break;
-                                    }
-                                    if (p1.getRotate() == 0) {
-                                        p1.setX(p1.getX() - 21);
-                                        p1.setY(p1.getY() + 21);
-                                    }
-                                    if(p1.getRotate() == 180) {
-                                        p1.setX(p1.getX() + 21);
-                                        p1.setY(p1.getY() + 21);
-                                    }
-                                    p1Dx = 0;
-                                    p1Dy = 5;
 
-                                    p1.setRotate(90);
-                                    break;
-
-                                case 3:
-                                    if (p1.getRotate() == 180) {
+                                    case 3:
+                                        if (p1.getRotate() == 180) {
+                                            break;
+                                        }
+                                        if (p1.getRotate() == 90) {
+                                            p1.setX(p1.getX() + 21);
+                                            p1.setY(p1.getY() - 21);
+                                        }
+                                        if(p1.getRotate() == 270) {
+                                            p1.setX(p1.getX() + 21);
+                                            p1.setY(p1.getY() + 21);
+                                        }
+                                        p1Dx = 5;
+                                        p1Dy = 0;
+                                        p1.setRotate(0);
                                         break;
-                                    }
-                                    if (p1.getRotate() == 90) {
-                                        p1.setX(p1.getX() + 21);
-                                        p1.setY(p1.getY() - 21);
-                                    }
-                                    if(p1.getRotate() == 270) {
-                                        p1.setX(p1.getX() + 21);
-                                        p1.setY(p1.getY() + 21);
-                                    }
-                                    p1Dx = 5;
-                                    p1Dy = 0;
-                                    p1.setRotate(0);
-                                    break;
 
-                                case 4:
-                                    if (p2.getRotate() == 90) {
+                                    case 4:
+                                        if (p2.getRotate() == 90) {
+                                            break;
+                                        }
+                                        if (p2.getRotate() == 0) {
+                                            p2.setX(p2.getX() - 21);
+                                            p2.setY(p2.getY() - 21);
+                                        }
+                                        if (p2.getRotate() == 180) {
+                                            p2.setX(p2.getX() + 21);
+                                            p2.setY(p2.getY() - 21);
+                                        }
+
+                                        p2Dx = 0;
+                                        p2Dy = -5;
+
+                                        p2.setRotate(270);
                                         break;
-                                    }
-                                    if (p2.getRotate() == 0) {
-                                        p2.setX(p2.getX() - 21);
-                                        p2.setY(p2.getY() - 21);
-                                    }
-                                    if (p2.getRotate() == 180) {
-                                        p2.setX(p2.getX() + 21);
-                                        p2.setY(p2.getY() - 21);
-                                    }
 
-                                    p2Dx = 0;
-                                    p2Dy = -5;
-
-                                    p2.setRotate(270);
-                                    break;
-
-                                case 5:
-                                    if (p2.getRotate() == 0) {
+                                    case 5:
+                                        if (p2.getRotate() == 0) {
+                                            break;
+                                        }
+                                        if (p2.getRotate() == 90) {
+                                            p2.setX(p2.getX() - 21);
+                                            p2.setY(p2.getY() - 21);
+                                        }
+                                        if(p2.getRotate() == 270) {
+                                            p2.setX(p2.getX() - 21);
+                                            p2.setY(p2.getY() + 21);
+                                        }
+                                        p2Dx = -5;
+                                        p2Dy = 0;
+                                        p2.setRotate(180);
                                         break;
-                                    }
-                                    if (p2.getRotate() == 90) {
-                                        p2.setX(p2.getX() - 21);
-                                        p2.setY(p2.getY() - 21);
-                                    }
-                                    if(p2.getRotate() == 270) {
-                                        p2.setX(p2.getX() - 21);
-                                        p2.setY(p2.getY() + 21);
-                                    }
-                                    p2Dx = -5;
-                                    p2Dy = 0;
-                                    p2.setRotate(180);
-                                    break;
 
-                                case 6:
-                                    if (p2.getRotate() == 270) {
+                                    case 6:
+                                        if (p2.getRotate() == 270) {
+                                            break;
+                                        }
+                                        if (p2.getRotate() == 0) {
+                                            p2.setX(p2.getX() - 21);
+                                            p2.setY(p2.getY() + 21);
+                                        }
+                                        if(p2.getRotate() == 180) {
+                                            p2.setX(p2.getX() + 21);
+                                            p2.setY(p2.getY() + 21);
+                                        }
+                                        p2Dx = 0;
+                                        p2Dy = 5;
+                                        p2.setRotate(90);
                                         break;
-                                    }
-                                    if (p2.getRotate() == 0) {
-                                        p2.setX(p2.getX() - 21);
-                                        p2.setY(p2.getY() + 21);
-                                    }
-                                    if(p2.getRotate() == 180) {
-                                        p2.setX(p2.getX() + 21);
-                                        p2.setY(p2.getY() + 21);
-                                    }
-                                    p2Dx = 0;
-                                    p2Dy = 5;
-                                    p2.setRotate(90);
-                                    break;
 
-                                case 7:
-                                    if (p2.getRotate() == 180) {
+                                    case 7:
+                                        if (p2.getRotate() == 180) {
+                                            break;
+                                        }
+                                        if (p2.getRotate() == 90) {
+                                            p2.setX(p2.getX() + 21);
+                                            p2.setY(p2.getY() - 21);
+                                        }
+                                        if(p2.getRotate() == 270) {
+                                            p2.setX(p2.getX() + 21);
+                                            p2.setY(p2.getY() + 21);
+                                        }
+                                        p2Dx = 5;
+                                        p2Dy = 0;
+                                        p2.setRotate(0);
                                         break;
-                                    }
-                                    if (p2.getRotate() == 90) {
-                                        p2.setX(p2.getX() + 21);
-                                        p2.setY(p2.getY() - 21);
-                                    }
-                                    if(p2.getRotate() == 270) {
-                                        p2.setX(p2.getX() + 21);
-                                        p2.setY(p2.getY() + 21);
-                                    }
-                                    p2Dx = 5;
-                                    p2Dy = 0;
-                                    p2.setRotate(0);
-                                    break;
+                                }
+                                System.out.println(keys[i]);
+                                keyDown[i] = false;
                             }
-                            System.out.println(keys[i]);
-                            keyDown[i] = false;
                         }
-                    }
-                    p1.setX(p1.getX()+p1Dx);
-                    p1.setY(p1.getY()+p1Dy);
-                    p2.setX(p2.getX()+p2Dx);
-                    p2.setY(p2.getY()+p2Dy);
-                    Color thanosColor = new Color(0.97254902, 0.011764, 1.0, 1.0);
-                    drawPath(p1, thanosColor);
-                    drawPath(p2, Color.LIGHTGREEN);
 
-                    if (hits(p1, p2)) {
-                        winner.setTextAlignment(TextAlignment.CENTER);
-                        if (p1.getRotate() == 0 && p2.getRotate() == 180 ||
-                                p1.getRotate() == 180 && p2.getRotate() == 0 ||
-                                p1.getRotate() == 90 && p2.getRotate() == 270 ||
-                                p1.getRotate() == 270 && p2.getRotate() == 90) {
-                            winner.setText("YOU BOTH LOSE!");
-                        }
-                        else if (p1.getRotate() == 0 && p2.getRotate() == 90 && p1.getX() + 9 < p2.getX() + 27 && p2.getX() + 66 < p1.getX() + 84 ||
-                                p1.getRotate() == 0 && p2.getRotate() == 270 && p1.getX() + 9 < p2.getX() + 27 && p2.getX() + 66 < p1.getX() + 84 ||
-                                p1.getRotate() == 180 && p2.getRotate() == 90 && p1.getX() + 9 < p2.getX() + 27 && p2.getX() + 66 < p1.getX() + 84 ||
-                                p1.getRotate() == 180 && p2.getRotate() == 270 && p1.getX() + 9 < p2.getX() + 27 && p2.getX() + 66 < p1.getX() + 84) {
-                            winner.setText("ThanosTron WINS!!!\nHALF YOUR RAM IS GONE!!!\nCLICK HERE TO DOWNLOAD MORE RAM");
-                        }
-                        else if (p2.getRotate() == 0 && p1.getRotate() == 90 && p2.getX() + 9< p1.getX() + 27 && p1.getX() + 66 < p2.getX() + 84 ||
-                                p2.getRotate() == 0 && p1.getRotate() == 270 && p2.getX() + 9 < p1.getX() + 27 && p1.getX() + 66 < p2.getX() + 84 ||
-                                p2.getRotate() == 180 && p1.getRotate() == 90 && p2.getX() + 9 < p1.getX() + 27 && p1.getX() + 66 < p2.getX() + 84 ||
-                                p2.getRotate() == 180 && p1.getRotate() == 270 && p2.getX() + 9 < p1.getX() + 27 && p1.getX() + 66 < p2.getX() + 84) {
-                            winner.setText("YOU HAVE SUCCESSFULLY SAVED YOUR RAM");
-                        }
-                        winner.xProperty().bind(end.widthProperty().divide(2));
-                        winner.yProperty().bind(end.heightProperty().divide(2));
+                        p1.setX(p1.getX()+p1Dx);
+                        p1.setY(p1.getY()+p1Dy);
 
-                        BorderPane bp = new BorderPane();
-                        bp.setCenter(winner);
+                        p2.setX(p2.getX()+p2Dx);
+                        p2.setY(p2.getY()+p2Dy);
 
-                        Scene endGame = new Scene(bp, 1000, 1000);
-                        ps.setScene(endGame);
-                        this.stop();
-                    }
-                    for (int i = 0; i < paths.size(); i++) {
-                        if (hits(p1, paths.get(i))) {
-                            winner.setText("YOU HAVE SUCCESSFULLY SAVED YOUR RAM");
+                        Color thanosColor = new Color(0.97254902, 0.011764, 1.0, 1.0);
+
+                        drawPath(p1, thanosColor);
+                        drawPath(p2, Color.LIGHTGREEN);
+
+                        if (hits(p1, p2)) {
+                            winner.setTextAlignment(TextAlignment.CENTER);
+                            if (p1.getRotate() == 0 && p2.getRotate() == 180 ||
+                                    p1.getRotate() == 180 && p2.getRotate() == 0 ||
+                                    p1.getRotate() == 90 && p2.getRotate() == 270 ||
+                                    p1.getRotate() == 270 && p2.getRotate() == 90) {
+                                winner.setText("YOU BOTH LOSE!");
+                            }
+                            else if (p1.getRotate() == 0 && p2.getRotate() == 90 && p1.getX() + 9 < p2.getX() + 27 && p2.getX() + 66 < p1.getX() + 84 ||
+                                    p1.getRotate() == 0 && p2.getRotate() == 270 && p1.getX() + 9 < p2.getX() + 27 && p2.getX() + 66 < p1.getX() + 84 ||
+                                    p1.getRotate() == 180 && p2.getRotate() == 90 && p1.getX() + 9 < p2.getX() + 27 && p2.getX() + 66 < p1.getX() + 84 ||
+                                    p1.getRotate() == 180 && p2.getRotate() == 270 && p1.getX() + 9 < p2.getX() + 27 && p2.getX() + 66 < p1.getX() + 84) {
+                                winner.setText("ThanosTron WINS!!!\nHALF YOUR RAM IS GONE!!!\nCLICK HERE TO DOWNLOAD MORE RAM");
+                            }
+                            else if (p2.getRotate() == 0 && p1.getRotate() == 90 && p2.getX() + 9< p1.getX() + 27 && p1.getX() + 66 < p2.getX() + 84 ||
+                                    p2.getRotate() == 0 && p1.getRotate() == 270 && p2.getX() + 9 < p1.getX() + 27 && p1.getX() + 66 < p2.getX() + 84 ||
+                                    p2.getRotate() == 180 && p1.getRotate() == 90 && p2.getX() + 9 < p1.getX() + 27 && p1.getX() + 66 < p2.getX() + 84 ||
+                                    p2.getRotate() == 180 && p1.getRotate() == 270 && p2.getX() + 9 < p1.getX() + 27 && p1.getX() + 66 < p2.getX() + 84) {
+                                winner.setText("YOU HAVE SUCCESSFULLY SAVED YOUR RAM");
+                            }
                             winner.xProperty().bind(end.widthProperty().divide(2));
                             winner.yProperty().bind(end.heightProperty().divide(2));
 
-                            end.setCenter(winner);
-                            ps.setScene(endGame);
-                            this.stop();
-                        }
-                        else if (hits(p2, paths.get(i))) {
-                            winner.setText("ThanosTron WINS!!!\nHALF YOUR RAM IS GONE!!!\nCLICK HERE TO DOWNLOAD MORE RAM");
-                            winner.xProperty().bind(end.widthProperty().divide(2));
-                            winner.yProperty().bind(end.heightProperty().divide(2));
+                            BorderPane bp = new BorderPane();
+                            bp.setCenter(winner);
 
-                            end.setCenter(winner);
+                            Scene endGame = new Scene(bp, 1000, 1000);
                             ps.setScene(endGame);
                             this.stop();
                         }
+                        for (int i = 0; i < paths.size(); i++) {
+                            if (hits(p1, paths.get(i))) {
+                                winner.setText("YOU HAVE SUCCESSFULLY SAVED YOUR RAM");
+                                winner.xProperty().bind(end.widthProperty().divide(2));
+                                winner.yProperty().bind(end.heightProperty().divide(2));
+
+                                end.setCenter(winner);
+                                ps.setScene(endGame);
+                                this.stop();
+                            }
+                            else if (hits(p2, paths.get(i))) {
+                                winner.setText("ThanosTron WINS!!!\nHALF YOUR RAM IS GONE!!!\nCLICK HERE TO DOWNLOAD MORE RAM");
+                                winner.xProperty().bind(end.widthProperty().divide(2));
+                                winner.yProperty().bind(end.heightProperty().divide(2));
+
+                                end.setCenter(winner);
+                                ps.setScene(endGame);
+                                this.stop();
+                            }
+                        }
+                        pane.requestFocus();
                     }
-                }
-            }.start();
+                }.start();
+            }
         });
 
-
-
-
         ps.setResizable(true);
+        ps.setMaximized(true);
+        ps.setFullScreen(true);
+        ps.setTitle("Evanescent");
         ps.show();
-        pane.requestFocus();
+        mainMenuPane.requestFocus();
     }
 
     public void move(KeyEvent e) {
