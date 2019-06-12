@@ -3,20 +3,25 @@ import javafx.application.Application;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class RealBackUpTRON extends Application {
     double p1Dx = 5;
-    Pane pane = new Pane();
+    Pane mainPane = new Pane();
+    BorderPane mainMenuPane = new BorderPane();
 
-    //Image yellowRight = new Image("YellowRight.gif", 150, 150, true, true);
+    Button startGame1 = new Button();
+    Text menuText = new Text();
+
     Image green = new Image("Green.png", 150, 150, true, true);
-
     Image thanos = new Image("Thanos.png", 150, 150, true, true);
 
     ImageView p1 = new ImageView(green);
@@ -39,15 +44,21 @@ public class RealBackUpTRON extends Application {
 
     public void start(Stage ps) {
 
+        startGame1.setText("Start");
+        mainMenuPane.setBottom(startGame1);
+
+        menuText.setText("Evanescent");
+        mainMenuPane.setCenter(menuText);
+
         p1.setX(750);
         p1.setY(750);
 
         p2.setX(150);
         p2.setY(150);
 
-        pane.getChildren().addAll(p1, p2);
+        mainPane.getChildren().addAll(p1, p2);
 
-        pane.setOnKeyPressed(e -> move(e));
+        mainPane.setOnKeyPressed(e -> move(e));
         //pane.setOnKeyReleased(e -> released(e));
 
 
@@ -81,10 +92,15 @@ public class RealBackUpTRON extends Application {
         }.start();
 
 
-        Scene scene = new Scene(pane, 400, 400);
-        ps.setScene(scene);
+        Scene mainMenu = new Scene(mainMenuPane, 1000, 1000);
+        Scene mainScene = new Scene(mainPane, 1000, 1000);
+
+        ps.setScene(mainMenu);
+        startGame1.setOnAction(e->{
+           ps.setScene(mainScene);
+        });
         ps.show();
-        pane.requestFocus();
+        mainPane.requestFocus();
 
     }
 
