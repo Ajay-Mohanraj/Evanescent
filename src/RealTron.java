@@ -18,6 +18,7 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 
 public class RealTron extends Application {
     Pane pane = new Pane();
@@ -40,16 +41,6 @@ public class RealTron extends Application {
     int p1Dy = 0;
     int p2Dy = 0;
     int p2Dx = 0;
-
-    final int p1_up = 0;
-    final int p1_left = 1;
-    final int p1_down = 2;
-    final int p1_right = 3;
-
-    final KeyCode P2UP = KeyCode.UP;
-    final KeyCode P2LEFT = KeyCode.LEFT;
-    final KeyCode P2DOWN = KeyCode.DOWN;
-    final KeyCode P2RIGHT = KeyCode.RIGHT;
 
     KeyCode[] keys = {KeyCode.W, KeyCode.A, KeyCode.S, KeyCode.D, KeyCode.UP, KeyCode.LEFT, KeyCode.DOWN, KeyCode.RIGHT};
     Boolean[] keyDown = {false, false, false, false, false, false, false, false};
@@ -75,48 +66,142 @@ public class RealTron extends Application {
                     if (keyDown[i]) {
                         switch (i) {
                             case 0:
+                                if (p1.getRotate() == 90) {
+                                    break;
+                                }
+                                if (p1.getRotate() == 0) {
+                                    p1.setX(p1.getX() - 21);
+                                    p1.setY(p1.getY() - 21);
+                                }
+                                if (p1.getRotate() == 180) {
+                                    p1.setX(p1.getX() + 21);
+                                    p1.setY(p1.getY() - 21);
+                                }
+
                                 p1Dx = 0;
                                 p1Dy = -5;
+
                                 p1.setRotate(270);
                                 break;
 
                             case 1:
+                                if (p1.getRotate() == 0) {
+                                    break;
+                                }
+                                if (p1.getRotate() == 90) {
+                                    p1.setX(p1.getX() - 21);
+                                    p1.setY(p1.getY() - 21);
+                                }
+                                if(p1.getRotate() == 270) {
+                                    p1.setX(p1.getX() - 21);
+                                    p1.setY(p1.getY() + 21);
+                                }
                                 p1Dx = -5;
                                 p1Dy = 0;
+
                                 p1.setRotate(180);
                                 break;
 
                             case 2:
+                                if (p1.getRotate() == 270) {
+                                    break;
+                                }
+                                if (p1.getRotate() == 0) {
+                                    p1.setX(p1.getX() - 21);
+                                    p1.setY(p1.getY() + 21);
+                                }
+                                if(p1.getRotate() == 180) {
+                                    p1.setX(p1.getX() + 21);
+                                    p1.setY(p1.getY() + 21);
+                                }
                                 p1Dx = 0;
                                 p1Dy = 5;
+
                                 p1.setRotate(90);
                                 break;
 
                             case 3:
+                                if (p1.getRotate() == 180) {
+                                    break;
+                                }
+                                if (p1.getRotate() == 90) {
+                                    p1.setX(p1.getX() + 21);
+                                    p1.setY(p1.getY() - 21);
+                                }
+                                if(p1.getRotate() == 270) {
+                                    p1.setX(p1.getX() + 21);
+                                    p1.setY(p1.getY() + 21);
+                                }
                                 p1Dx = 5;
                                 p1Dy = 0;
                                 p1.setRotate(0);
                                 break;
 
                             case 4:
+                                if (p2.getRotate() == 90) {
+                                    break;
+                                }
+                                if (p2.getRotate() == 0) {
+                                    p2.setX(p2.getX() - 21);
+                                    p2.setY(p2.getY() - 21);
+                                }
+                                if (p2.getRotate() == 180) {
+                                    p2.setX(p2.getX() + 21);
+                                    p2.setY(p2.getY() - 21);
+                                }
+
                                 p2Dx = 0;
                                 p2Dy = -5;
+
                                 p2.setRotate(270);
                                 break;
 
                             case 5:
+                                if (p2.getRotate() == 0) {
+                                    break;
+                                }
+                                if (p2.getRotate() == 90) {
+                                    p2.setX(p2.getX() - 21);
+                                    p2.setY(p2.getY() - 21);
+                                }
+                                if(p2.getRotate() == 270) {
+                                    p2.setX(p2.getX() - 21);
+                                    p2.setY(p2.getY() + 21);
+                                }
                                 p2Dx = -5;
                                 p2Dy = 0;
                                 p2.setRotate(180);
                                 break;
 
                             case 6:
+                                if (p2.getRotate() == 270) {
+                                    break;
+                                }
+                                if (p2.getRotate() == 0) {
+                                    p2.setX(p2.getX() - 21);
+                                    p2.setY(p2.getY() + 21);
+                                }
+                                if(p2.getRotate() == 180) {
+                                    p2.setX(p2.getX() + 21);
+                                    p2.setY(p2.getY() + 21);
+                                }
                                 p2Dx = 0;
                                 p2Dy = 5;
                                 p2.setRotate(90);
                                 break;
 
                             case 7:
+                                if (p2.getRotate() == 180) {
+                                    break;
+                                }
+                                if (p2.getRotate() == 90) {
+                                    p2.setX(p2.getX() + 21);
+                                    p2.setY(p2.getY() - 21);
+                                }
+                                if(p2.getRotate() == 270) {
+                                    p2.setX(p2.getX() + 21);
+                                    p2.setY(p2.getY() + 21);
+                                }
                                 p2Dx = 5;
                                 p2Dy = 0;
                                 p2.setRotate(0);
@@ -126,12 +211,12 @@ public class RealTron extends Application {
                         keyDown[i] = false;
                     }
                 }
-                drawPath(p1, Color.INDIGO);
-                drawPath(p2, Color.LIGHTGREEN);
                 p1.setX(p1.getX()+p1Dx);
                 p1.setY(p1.getY()+p1Dy);
                 p2.setX(p2.getX()+p2Dx);
                 p2.setY(p2.getY()+p2Dy);
+                drawPath(p1, Color.INDIGO);
+                drawPath(p2, Color.LIGHTGREEN);
 
                 if (hits(p1, p2)) {
                     winner.setTextAlignment(TextAlignment.CENTER);
@@ -156,34 +241,39 @@ public class RealTron extends Application {
                     winner.xProperty().bind(end.widthProperty().divide(2));
                     winner.yProperty().bind(end.heightProperty().divide(2));
 
-                    end.setCenter(winner);
+                    BorderPane bp = new BorderPane();
+                    bp.setCenter(winner);
 
-                    Scene endGame = new Scene(end, 1000, 1000);
+                    Scene endGame = new Scene(bp, 1000, 1000);
                     ps.setScene(endGame);
+                    this.stop();
                 }
-                for (Rectangle rect : paths) {
-                    if (hits(p1, rect)) {
+                for (int i = 0; i < paths.size(); i++) {
+                    if (hits(p1, paths.get(i))) {
                         winner.setText("YOU HAVE SUCCESSFULLY SAVED YOUR RAM");
                         winner.xProperty().bind(end.widthProperty().divide(2));
                         winner.yProperty().bind(end.heightProperty().divide(2));
 
                         end.setCenter(winner);
                         ps.setScene(endGame);
+                        this.stop();
                     }
-                    else if (hits(p2, rect)) {
+                    else if (hits(p2, paths.get(i))) {
                         winner.setText("ThanosTron WINS!!!\nHALF YOUR RAM IS GONE!!!\nCLICK HERE TO DOWNLOAD MORE RAM");
                         winner.xProperty().bind(end.widthProperty().divide(2));
                         winner.yProperty().bind(end.heightProperty().divide(2));
 
                         end.setCenter(winner);
                         ps.setScene(endGame);
+                        this.stop();
                     }
                 }
             }
         }.start();
 
-        Scene scene = new Scene(pane, 1000, 1000);
+        Scene scene = new Scene(pane, 1920, 1080);
         ps.setScene(scene);
+        ps.setResizable(false);
         ps.show();
         pane.requestFocus();
     }
@@ -199,11 +289,11 @@ public class RealTron extends Application {
 
     public Rectangle2D getBoundary(ImageView player, Image p) {
         if (player.getRotate() == 0 || player.getRotate() == 180) {
-            return new Rectangle2D(player.getX() + 9, player.getY() + 30, p.getRequestedWidth() - 18, p.getRequestedHeight() - 51);
+            //return new Rectangle2D(player.getX() + 9, player.getY() + 30, p.getRequestedWidth() - 18, p.getRequestedHeight() - 51);
+              return new Rectangle2D(player.getX() + 9, player.getY() + 27, 78, 42);
         }
-
         else if (player.getRotate() == 90 || player.getRotate() == 270) {
-            return new Rectangle2D(player.getX() + 30, player.getY() + 9, p.getRequestedWidth() - 51, p.getRequestedHeight() - 18);
+            return new Rectangle2D(player.getX() + 27, player.getY() + 9, 42, 78);
 
         }
         return new Rectangle2D(0, 0, 1, 1);
@@ -217,7 +307,7 @@ public class RealTron extends Application {
         Rectangle path = new Rectangle();
 
         if (player.getRotate() == 0) {
-            path.setX(player.getX() + 3);
+            path.setX(player.getX() + 1);
             path.setY(player.getY() + 27);
             path.setWidth(5);
             path.setHeight(42);
@@ -232,7 +322,7 @@ public class RealTron extends Application {
 
         else if (player.getRotate() == 90) {
             path.setX(player.getX() + 27);
-            path.setY(player.getY() + 3);
+            path.setY(player.getY() + 1);
             path.setWidth(42);
             path.setHeight(5);
         }
