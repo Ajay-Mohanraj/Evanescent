@@ -40,7 +40,6 @@ public class RealBackUpTRON extends Application {
     Boolean[] keyDown = {false, false, false, false, false, false, false, false};
 
     public void start(Stage ps) {
-
         startGame1.setText("Start");
         mainMenuPane.setBottom(startGame1);
 

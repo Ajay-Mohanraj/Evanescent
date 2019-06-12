@@ -18,7 +18,7 @@ import javafx.stage.Stage;
 
 import java.util.ArrayList;
 
-public class RealTron extends Application {
+public class MainMenuTest extends Application {
     Pane pane = new Pane();
     BorderPane mainMenuPane = new BorderPane();
 
@@ -295,8 +295,6 @@ public class RealTron extends Application {
         ps.setResizable(true);
         ps.show();
         pane.requestFocus();
-
-
     }
 
     public void move(KeyEvent e) {
@@ -311,7 +309,7 @@ public class RealTron extends Application {
     public Rectangle2D getBoundary(ImageView player, Image p) {
         if (player.getRotate() == 0 || player.getRotate() == 180) {
             //return new Rectangle2D(player.getX() + 9, player.getY() + 30, p.getRequestedWidth() - 18, p.getRequestedHeight() - 51);
-              return new Rectangle2D(player.getX() + 9, player.getY() + 27, 78, 42);
+            return new Rectangle2D(player.getX() + 9, player.getY() + 27, 78, 42);
         }
         else if (player.getRotate() == 90 || player.getRotate() == 270) {
             return new Rectangle2D(player.getX() + 27, player.getY() + 9, 42, 78);
