@@ -354,7 +354,6 @@ public class MainMenuTest extends Application {
         }
 
         paths.add(path);
-
         path.setFill(color);
         path.setStroke(color);
         pane.getChildren().add(path);
