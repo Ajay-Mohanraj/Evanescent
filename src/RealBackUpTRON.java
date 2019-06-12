@@ -1,12 +1,9 @@
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
@@ -22,7 +19,7 @@ public class RealBackUpTRON extends Application {
     Text menuText = new Text();
 
     Image green = new Image("Green.png", 150, 150, true, true);
-    Image thanos = new Image("Thanos.png", 150, 150, true, true);
+    Image thanos = new Image("Thanos(OLD).png", 150, 150, true, true);
 
     ImageView p1 = new ImageView(green);
     ImageView p2 = new ImageView(thanos);

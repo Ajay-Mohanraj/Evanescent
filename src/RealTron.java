@@ -1,8 +1,5 @@
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
-import javafx.event.Event;
-import javafx.event.EventHandler;
-import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -18,7 +15,6 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
-import java.util.ConcurrentModificationException;
 
 public class RealTron extends Application {
     Pane pane = new Pane();
@@ -37,21 +33,24 @@ public class RealTron extends Application {
 
     ArrayList<Rectangle> paths = new ArrayList<Rectangle>();
 
-    int p1Dx = 0;
+    int p1Dx = 5;
     int p1Dy = 0;
     int p2Dy = 0;
-    int p2Dx = 0;
+    int p2Dx = -5;
 
     KeyCode[] keys = {KeyCode.W, KeyCode.A, KeyCode.S, KeyCode.D, KeyCode.UP, KeyCode.LEFT, KeyCode.DOWN, KeyCode.RIGHT};
     Boolean[] keyDown = {false, false, false, false, false, false, false, false};
 
     public void start(Stage ps) {
+        pane.setStyle("-fx-background-color: #000000");
+        end.setStyle("-fx-background-color: #000000");
+        winner.setStyle("-fx-background-color: #FFFFFF");
 
         p1.setX(0);
         p1.setY(0);
 
-        p2.setX(650);
-        p2.setY(650);
+        p2.setX(1834);
+        p2.setY(924);
         p2.setRotate(180);
 
         pane.getChildren().addAll(p1, p2);
@@ -215,7 +214,8 @@ public class RealTron extends Application {
                 p1.setY(p1.getY()+p1Dy);
                 p2.setX(p2.getX()+p2Dx);
                 p2.setY(p2.getY()+p2Dy);
-                drawPath(p1, Color.INDIGO);
+                Color thanosColor = new Color(0.97254902, 0.011764, 1.0, 1.0);
+                drawPath(p1, thanosColor);
                 drawPath(p2, Color.LIGHTGREEN);
 
                 if (hits(p1, p2)) {
