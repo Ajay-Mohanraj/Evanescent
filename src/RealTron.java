@@ -58,7 +58,7 @@ public class RealTron extends Application {
 
         pane.setStyle("-fx-background-color: #000000");
         end.setStyle("-fx-background-color: #000000");
-        winner.setStyle("-fx-background-color: #FFFFFF");
+        winner.setFill(Color.WHITE);
 
         p1.setX(0);
         p1.setY(0);
@@ -241,17 +241,19 @@ public class RealTron extends Application {
 
                         if ((p1.getRotate() == up && p1.getY() + 9 <= 0)
                                 || (p1.getRotate() == left && p1.getX() + 9 <= 0)
-                                || (p1.getRotate() == down && p1.getY() + 66 >= pane.getHeight())
-                                || (p1.getRotate() == right && p1.getX() + 66 >= pane.getWidth())) {
-                            pane.getChildren().remove(p1);
+                                || (p1.getRotate() == down && p1.getY() + 84 >= pane.getHeight())
+                                || (p1.getRotate() == right && p1.getX() + 84 >= pane.getWidth())) {
+                            winner.setText("YOU HAVE SAVED YOUR RAM");
+                            end.setCenter(winner);
                             ps.setScene(endGame);
                         }
 
                         if ((p2.getRotate() == up && p2.getY() + 9 <= 0)
                                 || (p2.getRotate() == left && p2.getX() + 9 <= 0)
-                                || (p2.getRotate() == down && p2.getY() + 66 >= pane.getHeight())
-                                || (p2.getRotate() == right && p2.getX() + 66 >= pane.getWidth())) {
-                            pane.getChildren().remove(p2);
+                                || (p2.getRotate() == down && p2.getY() + 84 >= pane.getHeight())
+                                || (p2.getRotate() == right && p2.getX() + 84 >= pane.getWidth())) {
+                            winner.setText("THANOSTRON HAS WON!!!");
+                            end.setCenter(winner);
                             ps.setScene(endGame);
                         }
 
@@ -265,16 +267,21 @@ public class RealTron extends Application {
                                     p1.getRotate() == up && p2.getRotate() == down) {
                                 winner.setText("YOU BOTH LOSE!");
                             }
-                            else if (p1.getRotate() == right && p2.getRotate() == down && p1.getX() + 9 < p2.getX() + 27 && p2.getX() + 66 < p1.getX() + 84 ||
-                                    p1.getRotate() == right && p2.getRotate() == up && p1.getX() + 9 < p2.getX() + 27 && p2.getX() + 66 < p1.getX() + 84 ||
-                                    p1.getRotate() == left && p2.getRotate() == down && p1.getX() + 9 < p2.getX() + 27 && p2.getX() + 66 < p1.getX() + 84 ||
-                                    p1.getRotate() == left && p2.getRotate() == up && p1.getX() + 9 < p2.getX() + 27 && p2.getX() + 66 < p1.getX() + 84) {
+                            else if (p1.getRotate() == right && p2.getRotate() == down && (p1.getX() + 9 < p2.getX() + 27 || p2.getX() + 66 < p1.getX() + 84) ||
+                                    p1.getRotate() == right && p2.getRotate() == up && (p1.getX() + 9 < p2.getX() + 27 || p2.getX() + 66 < p1.getX() + 84) ||
+                                    p1.getRotate() == left && p2.getRotate() == down && (p1.getX() + 9 < p2.getX() + 27 || p2.getX() + 66 < p1.getX() + 84) ||
+                                    p1.getRotate() == left && p2.getRotate() == up && (p1.getX() + 9 < p2.getX() + 27 || p2.getX() + 66 < p1.getX() + 84) ||
+                                    (p1.getRotate() == up && p2.getRotate() == left || p1.getRotate() == up && p2.getRotate() == right) && (p1.getY() + 9 < p2.getY() + 27 || p2.getY() + 66 < p1.getY() + 84) ||
+                                    (p1.getRotate() == down && p2.getRotate() == left || p1.getRotate() == down && p2.getRotate() == right) && (p1.getY() + 9 < p2.getY() + 27 || p2.getY() + 66 < p1.getY() + 84)) {
                                 winner.setText("ThanosTron WINS!!!\nHALF YOUR RAM IS GONE!!!\nCLICK HERE TO DOWNLOAD MORE RAM");
                             }
-                            else if (p2.getRotate() == right && p1.getRotate() == down && p2.getX() + 9 < p1.getX() + 27 && p1.getX() + 66 < p2.getX() + 84 ||
-                                    p2.getRotate() == right && p1.getRotate() == up && p2.getX() + 9 < p1.getX() + 27 && p1.getX() + 66 < p2.getX() + 84 ||
-                                    p2.getRotate() == left && p1.getRotate() == down && p2.getX() + 9 < p1.getX() + 27 && p1.getX() + 66 < p2.getX() + 84 ||
-                                    p2.getRotate() == left && p1.getRotate() == up && p2.getX() + 9 < p1.getX() + 27 && p1.getX() + 66 < p2.getX() + 84) {
+                            else if (p2.getRotate() == right && p1.getRotate() == down && (p2.getX() + 9 < p1.getX() + 27 || p1.getX() + 66 < p2.getX() + 84) ||
+                                    p2.getRotate() == right && p1.getRotate() == up && (p2.getX() + 9 < p1.getX() + 27 || p1.getX() + 66 < p2.getX() + 84) ||
+                                    p2.getRotate() == left && p1.getRotate() == down && (p2.getX() + 9 < p1.getX() + 27 || p1.getX() + 66 < p2.getX() + 84) ||
+                                    p2.getRotate() == left && p1.getRotate() == up && (p2.getX() + 9 < p1.getX() + 27 || p1.getX() + 66 < p2.getX() + 84) ||
+                                    (p2.getRotate() == up && p1.getRotate() == left || p2.getRotate() == up && p1.getRotate() == right) && (p2.getY() + 9 < p1.getY() + 27 || p1.getY() + 66 < p2.getY() + 84) ||
+                                    (p2.getRotate() == down && p1.getRotate() == left || p2.getRotate() == down && p1.getRotate() == right) && (p2.getY() + 9 < p1.getY() + 27 || p1.getY() + 66 < p2.getY() + 84))
+                            {
                                 winner.setText("YOU HAVE SUCCESSFULLY SAVED YOUR RAM");
                             }
                             winner.xProperty().bind(end.widthProperty().divide(2));
@@ -283,9 +290,10 @@ public class RealTron extends Application {
                             BorderPane bp = new BorderPane();
                             bp.setCenter(winner);
 
-                            Scene endGame = new Scene(bp, 1000, 1000);
-                            ps.setScene(endGame);
+                            Scene hi = new Scene(bp, 1920, 1080);
+                            ps.setScene(hi);
                             this.stop();
+
                         }
                         for (int i = 0; i < paths.size(); i++) {
                             if (hits(p1, paths.get(i))) {
@@ -297,6 +305,7 @@ public class RealTron extends Application {
                                 ps.setScene(endGame);
                                 this.stop();
                             }
+
                             else if (hits(p2, paths.get(i))) {
                                 winner.setText("ThanosTron WINS!!!\nHALF YOUR RAM IS GONE!!!\nCLICK HERE TO DOWNLOAD MORE RAM");
                                 winner.xProperty().bind(end.widthProperty().divide(2));
@@ -308,12 +317,17 @@ public class RealTron extends Application {
                             }
                         }
                         pane.requestFocus();
+
+//                        if (paths.size() == 750) {
+//                            pane.getChildren().remove(paths.get(0));
+//                            paths.remove(0);
+//                            pane.getChildren().remove(paths.get(0));sa
+//                            paths.remove(0);
+//                       }
                     }
                 }.start();
             }
         });
-
-
 
         ps.setResizable(true);
         ps.setMaximized(true);
@@ -330,7 +344,6 @@ public class RealTron extends Application {
                 keyDown[i] = true;
             }
         }
-
     }
 
     public Rectangle2D getBoundary(ImageView player, Image p) {
@@ -385,9 +398,7 @@ public class RealTron extends Application {
         path.setFill(color);
         path.setStroke(color);
 
-
         pane.getChildren().add(path);
-
     }
 
     public boolean hits(ImageView p1, ImageView p2) {
