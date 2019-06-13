@@ -328,7 +328,7 @@ public class RealTron extends Application {
                 }.start();
             }
         });
-
+//
         ps.setResizable(true);
         ps.setMaximized(true);
         ps.setFullScreen(true);
