@@ -17,7 +17,6 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
-
 public class MainMenuTest extends Application {
     Pane pane = new Pane();
     BorderPane mainMenuPane = new BorderPane();
