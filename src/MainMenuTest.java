@@ -290,12 +290,6 @@ public class MainMenuTest extends Application {
                                 ps.setScene(endGame);
                                 this.stop();
                             }
-                            BorderPane bp1 = new BorderPane();
-                            bp1.setCenter(winner);
-
-                            Scene endGame = new Scene(bp1, 1000, 1000);
-                            ps.setScene(endGame);
-                            this.stop();
                         }
                         pane.requestFocus();
                     }
