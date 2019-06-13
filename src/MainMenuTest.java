@@ -72,11 +72,9 @@ public class MainMenuTest extends Application {
         Scene scene1 = new Scene(mainMenuPane, 1920, 1080);
 
         ps.setScene(scene1);
-        ps.setFullScreen(true);
         mainMenuPane.setOnKeyPressed(e -> {
             if (e.getCode() == KeyCode.ENTER){
                 ps.setScene(scene);
-                ps.setFullScreen(true);
                 new AnimationTimer() {
                     @Override
                     public void handle(long now) {
@@ -241,7 +239,7 @@ public class MainMenuTest extends Application {
                         drawPath(p1, thanosColor);
                         drawPath(p2, Color.LIGHTGREEN);
 
-                        if (hits1(p1, p2)) {
+                        if (hits(p1, p2)) {
                             winner.setTextAlignment(TextAlignment.CENTER);
                             if (p1.getRotate() == 0 && p2.getRotate() == 180 ||
                                     p1.getRotate() == 180 && p2.getRotate() == 0 ||
@@ -272,7 +270,7 @@ public class MainMenuTest extends Application {
                             this.stop();
                         }
                         for (int i = 0; i < paths.size(); i++) {
-                            if (hits2(p1, paths.get(i))) {
+                            if (hits(p1, paths.get(i))) {
                                 winner.setText("YOU HAVE SUCCESSFULLY SAVED YOUR RAM");
                                 winner.xProperty().bind(end.widthProperty().divide(2));
                                 winner.yProperty().bind(end.heightProperty().divide(2));
@@ -281,7 +279,7 @@ public class MainMenuTest extends Application {
                                 ps.setScene(endGame);
                                 this.stop();
                             }
-                            else if (hits2(p2, paths.get(i))) {
+                            else if (hits(p2, paths.get(i))) {
                                 winner.setText("ThanosTron WINS!!!\nHALF YOUR RAM IS GONE!!!\nCLICK HERE TO DOWNLOAD MORE RAM");
                                 winner.xProperty().bind(end.widthProperty().divide(2));
                                 winner.yProperty().bind(end.heightProperty().divide(2));
@@ -299,10 +297,11 @@ public class MainMenuTest extends Application {
 
         ps.setResizable(true);
         ps.setMaximized(true);
-
+        ps.setFullScreen(true);
         ps.setTitle("Evanescent");
         ps.show();
         mainMenuPane.requestFocus();
+
     }
 
     public void move(KeyEvent e) {
@@ -367,11 +366,10 @@ public class MainMenuTest extends Application {
         pane.getChildren().add(path);
     }
 
-    public boolean hits1(ImageView p1, ImageView p2) {
+    public boolean hits(ImageView p1, ImageView p2) {
         return getBoundary(p1, p1.getImage()).intersects(getBoundary(p2, p2.getImage()));
     }
-    public boolean hits2(ImageView player, Rectangle r) {
+    public boolean hits(ImageView player, Rectangle r) {
         return getBoundary(player, player.getImage()).intersects(getBoundary(r));
     }
-
 }
